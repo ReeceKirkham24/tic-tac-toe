@@ -17,21 +17,17 @@ function winCondition(playerOne, playerTwo){
     let x = playerOne.typeOfChar
     let y = playerTwo.typeOfChar
     for(let i = 0; i < 3; i++){
-        if(grid[i] == [x,x,x]){
+        if(grid[i][0] == x && grid[i][1] == x && grid[i][2] == x){
             return 1
-            
         }
-        else if (grid[i] == [y,y,y]){
+        else if (grid[i][0] == y && grid[i][1] == y && grid[i][2] == y){
             return 2
-            
         }
         else if(grid[0][i] == x && grid[1][i] == x && grid[2][i] == x){
             return 1
-            
         }
         else if(grid[0][i] == y && grid[1][i] == y && grid[2][i] == y){
             return 2
-            
         }
     }
     if((grid[0][0] == x && grid[1][1] == x && grid[2][2] == x) || (grid[0][2] == x && grid[1][1] == x && grid[2][0] == x)){
@@ -48,6 +44,7 @@ let gameInPlay = true
 
 while(running){
     let playerOne = new Human()
+    let playerTwo = new Human("bob", "L")
     let answer = prompt("Do you want to go first? Y/N " )
     if(answer.toLowerCase() == "y"){
         playerOne.typeOfChar = "X"
@@ -63,13 +60,12 @@ while(running){
     console.log(grid)
 
     while (gameInPlay){
-        
         answer = prompt("Choose your next position! ")
+        console.clear()
         x = answer.split(" ")[0]
         y = answer.split(" ")[1]
         
         if (grid[y][x] == "0"){
-            console.log(grid[y][x]);
             editGrid(x, y, playerOne.typeOfChar) 
             console.log(grid)
         }
@@ -81,12 +77,9 @@ while(running){
             console.log("Player One Wins");
             break
         }
-
     }
-
-        answer = prompt("Do you want to quit? Y/N ")
-        if(answer.toLowerCase() == "y"){
-            running = false
-        }
+    answer = prompt("Do you want to quit? Y/N ")
+    if(answer.toLowerCase() == "y"){
+        running = false
+    }
 }
-
