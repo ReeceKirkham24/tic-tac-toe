@@ -98,12 +98,12 @@ while (running) {
     console.log(grid[1])
     console.log(grid[2])
 
-    if (winCondition(playerOne, playerOne) == 1) {
+    if (winCondition(playerOne, playerTwo) == 1) {
       console.log("Player One Wins")
       gameInPlay = false
     }
 
-    if (winCondition(playerOne, playerOne) == 2) {
+    if (winCondition(playerOne, playerTwo) == 2) {
       console.log("Player Two Wins")
       gameInPlay = false
     }
@@ -121,4 +121,5 @@ while (running) {
     ]
   }
 }
+
 
