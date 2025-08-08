@@ -71,7 +71,7 @@ while (running) {
     do {
       xRandom = Math.floor(Math.random() * 3);
       yRandom = Math.floor(Math.random() * 3);
-    } while (!grid[yRandom][xRandom] == "0");
+    } while (grid[yRandom][xRandom] != "0");
 
     editGrid(xRandom, yRandom, playerTwo.typeOfChar);
     console.log("Player Two has played their move! ");
@@ -103,12 +103,12 @@ while (running) {
       }
     }
 
-    if (winCondition(playerOne, playerOne) == 1) {
+    if (winCondition(playerOne, playerTwo) == 1) {
       console.log("Player One Wins");
       break;
     }
 
-    if (winCondition(playerOne, playerOne) == 2) {
+    if (winCondition(playerOne, playerTwo) == 2) {
       console.log("Player Two Wins");
       break;
     }
@@ -125,3 +125,4 @@ while (running) {
     ];
   }
 }
+
