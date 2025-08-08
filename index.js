@@ -14,6 +14,7 @@ function editGrid(x,y,arg){
 }
 
 let running = true
+let gameInPlay = true
 
 while(running){
     let playerOne = new Human()
@@ -24,18 +25,33 @@ while(running){
     else{
         playerOne.typeOfChar = "O"
     }
-
-    answer = prompt("Choose your first X position! row column ")
+    
+    answer = prompt("Choose your first position! row column ")
     let x = answer.split(" ")[0]
     let y = answer.split(" ")[1]
-    editGrid(x, y, playerOne.typeOfChar) 
+    editGrid(x, y, playerOne.typeOfChar)
     console.log(grid)
-    
 
+    while (gameInPlay){
+        
+        answer = prompt("Choose your next position! ")
+        x = answer.split(" ")[0]
+        y = answer.split(" ")[1]
+        
+        if (grid[y][x] == "0"){
+            console.log(grid[y][x]);
+            editGrid(x, y, playerOne.typeOfChar) 
+            console.log(grid)
+        }
+        else {console.log("This position is already taken, enter a new postion! ")
+            console.log(grid)
+        }
 
-    answer = prompt("Do you want to quit? Y/N ")
-    if(answer.toLowerCase() == "y"){
-        running = false
     }
+
+        answer = prompt("Do you want to quit? Y/N ")
+        if(answer.toLowerCase() == "y"){
+            running = false
+        }
 }
 
