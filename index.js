@@ -29,6 +29,12 @@ while(running){
 
     console.log(grid);
     console.log(grid[1][1]);
+    answer = prompt("Choose your first X position! row column ")
+    let x = answer.split(" ")[0]
+    let y = answer.split(" ")[1]
+    editGrid(x, y, "X") 
+    console.log(grid)
+    
 
 
     answer = prompt("Do you want to quit? Y/N ")
@@ -36,3 +42,4 @@ while(running){
         running = false
     }
 }
+
