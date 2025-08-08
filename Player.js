@@ -4,3 +4,7 @@ class Player{
         this.typeOfChar = typeOfChar
     }
 }
+
+module.exports = {
+    Player
+}
