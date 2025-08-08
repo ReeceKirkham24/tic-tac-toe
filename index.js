@@ -66,31 +66,41 @@ while (running) {
   console.log(grid[2]);
 
   while (gameInPlay) {
-    let xRandom = Math.floor(Math.random() * 3);
-    let yRandom = Math.floor(Math.random() * 3);
-    if (grid[yRandom][xRandom] == "0") {
-      editGrid(xRandom, yRandom, playerTwo.typeOfChar);
-      console.log("Player Two has played their move! ");
-      console.log(grid[0]);
-      console.log(grid[1]);
-      console.log(grid[2]);
-    } else {
-    }
+    let xRandom, yRandom;
+
+    do {
+      xRandom = Math.floor(Math.random() * 3);
+      yRandom = Math.floor(Math.random() * 3);
+    } while (!grid[yRandom][xRandom] == "0");
+
+    editGrid(xRandom, yRandom, playerTwo.typeOfChar);
+    console.log("Player Two has played their move! ");
+    console.log(grid[0]);
+    console.log(grid[1]);
+    console.log(grid[2]);
 
     answer = prompt("Choose your next position! ");
     x = answer.split(" ")[0];
     y = answer.split(" ")[1];
 
-    if (grid[y][x] == "0") {
-      editGrid(x, y, playerOne.typeOfChar);
-      console.log(grid[0]);
-      console.log(grid[1]);
-      console.log(grid[2]);
-    } else {
-      console.log("This position is already taken, enter a new postion! ");
-      console.log(grid[0]);
-      console.log(grid[1]);
-      console.log(grid[2]);
+    let validMove = false;
+
+    while (!validMove) {
+      if (grid[y][x] == "0") {
+        editGrid(x, y, playerOne.typeOfChar);
+        console.log(grid[0]);
+        console.log(grid[1]);
+        console.log(grid[2]);
+        validMove = true;
+      } else {
+        answer = prompt("This position is already taken, enter a new postion! ");
+        console.log(grid[0]);
+        console.log(grid[1]);
+        console.log(grid[2]);
+
+        x = answer.split(" ")[0];
+        y = answer.split(" ")[1];
+      }
     }
 
     if (winCondition(playerOne, playerOne) == 1) {
