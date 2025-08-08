@@ -86,31 +86,28 @@ while (running) {
       }
     }
     else{
-      let moved = false
-      while(!moved){
-        let xRandom = Math.floor(Math.random() * 3);
-        let yRandom = Math.floor(Math.random() * 3);
-        if (grid[yRandom][xRandom] == "0") {
-          editGrid(xRandom, yRandom, playerTwo.typeOfChar)
-          console.log("Player Two has played their move! ")
-          moved = true
-        }
+      do {
+        xRandom = Math.floor(Math.random() * 3);
+        yRandom = Math.floor(Math.random() * 3);
+      } while (!grid[yRandom][xRandom] == "0");
+
+      editGrid(xRandom, yRandom, playerTwo.typeOfChar);
+      console.log("Player Two has played their move! ");
     }
-  }
-  console.log(grid[0])
-  console.log(grid[1])
-  console.log(grid[2])
+    console.log(grid[0])
+    console.log(grid[1])
+    console.log(grid[2])
 
-  if (winCondition(playerOne, playerOne) == 1) {
-    console.log("Player One Wins")
-    gameInPlay = false
-  }
+    if (winCondition(playerOne, playerOne) == 1) {
+      console.log("Player One Wins")
+      gameInPlay = false
+    }
 
-  if (winCondition(playerOne, playerOne) == 2) {
-    console.log("Player Two Wins")
-    gameInPlay = false
-  }
-  turn++
+    if (winCondition(playerOne, playerOne) == 2) {
+      console.log("Player Two Wins")
+      gameInPlay = false
+    }
+    turn++
   }
 
   answer = prompt("Do you want to quit? Y/N ")
