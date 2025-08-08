@@ -1,16 +1,16 @@
-const { Player } = require('./Player.js')
-const { Human } = require(`./Human.js`)
+const { Player } = require("./Player.js");
+const { Human } = require(`./Human.js`);
 
 let grid = [
-    [0,0,0],
-    [0,0,0],
-    [0,0,0]
-]
+  [0, 0, 0],
+  [0, 0, 0],
+  [0, 0, 0],
+];
 
-const prompt = require('prompt-sync')()
+const prompt = require("prompt-sync")();
 
-function editGrid(x,y,arg){
-    grid[y][x] = arg
+function editGrid(x, y, arg) {
+  grid[y][x] = arg;
 }
 
 function winCondition(playerOne, playerTwo){
@@ -39,47 +39,63 @@ function winCondition(playerOne, playerTwo){
     return 0
 }
 
-let running = true
-let gameInPlay = true
+let running = true;
+let gameInPlay = true;
 
-while(running){
-    let playerOne = new Human()
-    let playerTwo = new Human("bob", "L")
-    let answer = prompt("Do you want to go first? Y/N " )
-    if(answer.toLowerCase() == "y"){
-        playerOne.typeOfChar = "X"
-    }
-    else{
-        playerOne.typeOfChar = "O"
-    }
-    
-    answer = prompt("Choose your first position! row column ")
-    let x = answer.split(" ")[0]
-    let y = answer.split(" ")[1]
-    editGrid(x, y, playerOne.typeOfChar)
-    console.log(grid)
+while (running) {
+  let playerOne = new Human();
+  let answer = prompt("Do you want to go first? Y/N ");
+  if (answer.toLowerCase() == "y") {
+    playerOne.typeOfChar = "X";
+  } else {
+    playerOne.typeOfChar = "O";
+  }
 
-    while (gameInPlay){
-        answer = prompt("Choose your next position! ")
-        console.clear()
-        x = answer.split(" ")[0]
-        y = answer.split(" ")[1]
-        
-        if (grid[y][x] == "0"){
-            editGrid(x, y, playerOne.typeOfChar) 
-            console.log(grid)
-        }
-        else {console.log("This position is already taken, enter a new postion! ")
-            console.log(grid)
-        }
+  answer = prompt("Choose your first position! row column ");
+  let x = answer.split(" ")[0];
+  let y = answer.split(" ")[1];
+  editGrid(x, y, playerOne.typeOfChar);
+  console.log(grid[0]);
+  console.log(grid[1]);
+  console.log(grid[2]);
 
-        if (winCondition(playerOne,playerOne) == 1){
-            console.log("Player One Wins");
-            break
-        }
+  while (gameInPlay) {
+    answer = prompt("Choose your next position! ");
+    x = answer.split(" ")[0];
+    y = answer.split(" ")[1];
+
+    if (grid[y][x] == "0") {
+      editGrid(x, y, playerOne.typeOfChar);
+      console.log(grid[0]);
+      console.log(grid[1]);
+      console.log(grid[2]);
+    } else {
+      console.log("This position is already taken, enter a new postion! ");
+      console.log(grid[0]);
+      console.log(grid[1]);
+      console.log(grid[2]);
     }
-    answer = prompt("Do you want to quit? Y/N ")
-    if(answer.toLowerCase() == "y"){
-        running = false
+
+    if (winCondition(playerOne, playerOne) == 1) {
+      console.log("Player One Wins");
+      break;
     }
+
+    if (winCondition(playerOne, playerOne) == 2) {
+      console.log("Player Two Wins");
+      break;
+    }
+  }
+
+  answer = prompt("Do you want to quit? Y/N ");
+  if (answer.toLowerCase() == "y") {
+    running = false;
+  } else {
+    grid = [
+      [0, 0, 0],
+      [0, 0, 0],
+      [0, 0, 0],
+    ];
+  }
 }
+
