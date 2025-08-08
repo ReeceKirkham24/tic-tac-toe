@@ -89,7 +89,7 @@ while (running) {
       do {
         xRandom = Math.floor(Math.random() * 3);
         yRandom = Math.floor(Math.random() * 3);
-      } while (!grid[yRandom][xRandom] == "0");
+      } while (grid[yRandom][xRandom] != "0");
 
       editGrid(xRandom, yRandom, playerTwo.typeOfChar);
       console.log("Player Two has played their move! ");
