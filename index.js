@@ -1,5 +1,5 @@
-const {Human} = require(`./Human.js`)
 const { Player } = require('./Player.js')
+const { Human } = require(`./Human.js`)
 
 let grid = [
     [0,0,0],
@@ -10,22 +10,25 @@ let grid = [
 const prompt = require('prompt-sync')()
 
 function editGrid(x,y,arg){
-    grid[x][y] = arg
+    grid[y][x] = arg
 }
-
-editGrid(1,1,"O")
-
-console.log(grid);
-console.log(grid[1][1]);
 
 let running = true
 
 while(running){
-    let playerOne = Player()
-    let answer = prompt("Do you want to go first? Y/N" )
+    let playerOne = new Human()
+    let answer = prompt("Do you want to go first? Y/N " )
     if(answer.toLowerCase() == "y"){
         playerOne.typeOfChar = "X"
     }
+    else{
+        playerOne.typeOfChar = "O"
+    }
+
+    editGrid(1,1,playerOne.typeOfChar)
+
+    console.log(grid);
+    console.log(grid[1][1]);
 
 
     answer = prompt("Do you want to quit? Y/N ")
